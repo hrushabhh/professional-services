@@ -1,0 +1,61 @@
+{
+  "target": {
+    "project_id": "example-search-project",
+    "location": "global",
+    "collection_id": "default_collection",
+    "data_store_id": "enterprise-knowledge-datastore",
+    "serving_config_ids": [
+      "default_search"
+    ]
+  },
+  "replace_existing_controls": false,
+  "rules": [
+    {
+      "type": "numerical",
+      "control_id": "boost-authority-tier",
+      "display_name": "Authority Tier Boost and Bury Curve",
+      "field_name": "authority_tier",
+      "control_points": [
+        {
+          "attribute_value": "1",
+          "boost_amount": 0.85
+        },
+        {
+          "attribute_value": "5",
+          "boost_amount": 0.0
+        },
+        {
+          "attribute_value": "10",
+          "boost_amount": -0.35
+        }
+      ]
+    },
+    {
+      "type": "freshness",
+      "control_id": "boost-recency-decay",
+      "display_name": "Published Date Recency Decay",
+      "field_name": "published_at",
+      "control_points": [
+        {
+          "attribute_value": "30D",
+          "boost_amount": 0.45
+        },
+        {
+          "attribute_value": "365D",
+          "boost_amount": 0.0
+        },
+        {
+          "attribute_value": "1825D",
+          "boost_amount": -0.25
+        }
+      ]
+    },
+    {
+      "type": "condition",
+      "control_id": "bury-deprecated-docs",
+      "display_name": "Bury Deprecated Documents",
+      "filter_expression": "lifecycle_status: ANY(\"deprecated\", \"superseded\")",
+      "boost_amount": -0.6
+    }
+  ]
+}

@@ -637,6 +637,10 @@ Platform usage.
     utility helps to methodically test variety of Vertex AI Endpoints by their
     sizes so that one can decide the right size to deploy an ML Model on Vertex
     AI given a sample request JSON and some idea(s) on expected queries per second.
+*   [Vertex AI Search Boost](tools/vertex-search-boost) - A lightweight Python
+    SDK for configuring, simulating, and syncing Boost & Bury ranking controls
+    and inline `BoostSpec` rules in Google Cloud Vertex AI Search (Discovery
+    Engine) at query time without re-indexing.
 *   [VM Migrator](tools/vm-migrator) - This utility automates migrating Virtual
     Machine instances within GCP. You can migrate VM's from one zone to another
     zone/region within the same project or different projects while retaining
